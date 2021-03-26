@@ -5,8 +5,9 @@ class AuthService{
     signIn(email, password){
 
     return new Promise((resolve, reject) => {
-        axios.post('api/home/login', {email, password})
-        .them(response => {
+        axios
+        .post('api/home/login', {email, password})
+        .them((response) => {
             if (response.data.user){
                 resolve(response.data.user)
             } else {
@@ -15,9 +16,9 @@ class AuthService{
         })
         .catch(error => {
             reject(error)
-        })
-    })
-    }
+        });
+      });
+    };
 }
 
 const authService = new AuthService();

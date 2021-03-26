@@ -10,8 +10,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui//core/Button';
 import Link from '@material-ui//core/Link';
 import { useNavigate } from 'react-router-dom';
-import authService from '../../services/authService'
+import authService from '../../services/authService';
 import FormHelperText from '@material-ui/core/FormHelperText';
+
 
 const useStyles = makeStyles((theme) => ({
   root:{
@@ -61,13 +62,18 @@ function SignIn() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState();
 
+ 
   async function handleSignIn(){
-    try {
-       await authService.signIn(email, password);
-       navigate('/');
-    } catch (error) {
-      /*setErrorMessage(error.response.data.message);*/
+
+    try{
+      await authService.signIn('s.igormarcelo@gmail.com-', 'admin');
+      //200
+      navigate('/');
+    } catch (error){
+      console.log(error.response);
+      navigate('/');
     }
+    
   }
 
   return (
@@ -106,8 +112,6 @@ function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
             />
             <TextField
               variant="outlined"
@@ -119,14 +123,12 @@ function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
             />
             <Button fullWidth
               variant="contained"
               color="primary"
               className={classes.button}
-              onClick={() => navigate('/')}>
+              onClick={handleSignIn}>
               Entrar
             </Button>
             <Grid container>

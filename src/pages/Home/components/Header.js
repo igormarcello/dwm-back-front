@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import { Bell } from 'react-feather';
 import Avatar from '@material-ui/core/Avatar';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
   img:{
@@ -29,6 +30,7 @@ const useStyles = makeStyles({
 
 function Header(){
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return(
     <AppBar position="fixed" color='inherit'>
@@ -36,7 +38,7 @@ function Header(){
         <img src="/images/logo-laranja.png" alt="logo" className={classes.img}/>
         <div className={classes.grow}></div>
         <div className={classes.userSection}>
-          <Button color="primary" variant='contained' className={classes.button}>
+          <Button color="primary" variant='contained' className={classes.button} onClick={() => navigate('/sign-in')}>
           Novo Post
           </Button>
           <SvgIcon className={classes.bell}>

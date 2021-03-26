@@ -1,24 +1,19 @@
 import  mock from '../utils/mock';
 
-/*mock.onPost('/api/home/login').reply(200, {
-    'id': 1,
-    'username': igormarcelo,
-    'email': 's.igormarcelo@gmail.com'
-});*/
 
 mock.onPost('/api/home/login').reply((config) => {
-    const { email, password} = JSON.parse(config.data);
+    const {email, password} = JSON.parse(config.data);
 
-    if (email !== 'xxx' || password !== 'xxx'){
-        return [400, { message: 'E-mail ou senha errados!'}]
+    if (email !== 's.igormarcelo@gmail.com' || password !== 'admin'){
+        return [400, { message: 'Seu e-mail ou senha estão incorretos'}]
     }
 
-    const user = {
+    const user ={
         id: 1,
         name: 'Igor Marcelo',
-        username: 'igormarcelo',
-        email: 'xxx'
+        username: '22quinho',
+        email: 's.igormarcelo@gmail.com'
     }
 
-    return [200, { user }]
+    return [200,{ user }]
 });
